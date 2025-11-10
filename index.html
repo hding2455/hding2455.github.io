@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hao Ding's personal website</title>
+    <style>
+        /* Base layout */
+        :root {
+            --gap: 20px;
+            --max-photo-width: 600px;
+        }
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0px;
+            line-height: 1.6;
+            -webkit-font-smoothing:antialiased;
+            -moz-osx-font-smoothing:grayscale;
+            box-sizing: border-box;
+            color: #222;
+        }
+
+        .video-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+        .video-wrapper {
+            flex: 1 1 41%; /* Adjusts to take up to 45% of the container */
+            margin: 10px; /* Adds some spacing between videos */
+        }
+        .video-wrapper-2 {
+            flex: 1 1 50%; /* Adjusts to take up to 45% of the container */
+            margin: 10px; /* Adds some spacing between videos */
+        }
+        video {
+            width: 100%; /* Makes the video responsive */
+            border: none;
+        }
+        img {
+            width: 100%;
+            display: block;
+            margin-top: 10px;
+            border: none;
+        }
+    
+
+        /* Header area (text + photo) */
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: var(--gap);
+            margin-bottom: 20px;
+        }
+        .header .text {
+            flex: 1;
+            min-width: 0; /* allow text to shrink on small screens */
+            padding-right: 20px;
+        }
+        .header .photo {
+            flex: 1;
+            text-align: left;
+        }
+        .header img {
+            max-width: 100%;
+            width: 100%;
+            max-width: var(--max-photo-width);
+            height: auto;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            display: inline-block;
+            border: none;
+        }
+
+        /* Tabs */
+        .tab {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0;
+            /* border: 1px solid #ccc; */
+            background-color: #4c9359;
+            margin-bottom: 10px;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        .tab button {
+            background-color: inherit;
+            border: none;
+            outline: none;
+            cursor: pointer;
+            padding: 12px 14px;
+            transition: 0.2s;
+            flex: 1 1 auto;
+            text-align: center;
+            min-width: 120px;
+            font-size: 1rem;
+        }
+        .tab button:hover {
+            background-color: #ddd;
+        }
+        .tab button.active {
+            background-color: #ccc;
+        }
+
+        .tabcontent {
+            display: none;
+            padding: 12px;
+            border: none;
+        }
+
+        /* Image inside content */
+        .tabcontent img {
+            max-width: 100%;
+            height: auto;
+            border: 1px solid #ccc;
+            padding: 4px;
+            margin-top: 8px;
+            border: none;
+        }
+
+        /* Make font sizes a bit smaller on narrow screens */
+        h1, h2, h3 {
+            margin-top: 0.4em;
+            margin-bottom: 0.4em;
+        }
+
+        /* Utility */
+        .link-block { margin-left: 8px; }
+
+        /* Responsive rules */
+        @media (max-width: 900px) {
+            .header .text { padding-right: 12px; }
+            .tab button { padding: 10px 12px; min-width: 100px; font-size: 0.95rem; }
+        }
+
+        @media (max-width: 600px) {
+            body { padding: 12px; }
+            .header {
+                flex-direction: column;
+                align-items: center;
+            }
+            .header .text {
+                padding-right: 0;
+                width: 100%;
+            }
+            .header .photo {
+                width: 100%;
+                margin-top: 8px;
+            }
+            .tab {
+                /* stack buttons vertically for easy tapping */
+                flex-direction: column;
+                border-radius: 4px;
+                overflow: hidden;
+            }
+            .tab button {
+                width: 100%;
+                text-align: left;
+                padding: 14px;
+                border-bottom: 1px solid rgba(0,0,0,0.06);
+                font-size: 1rem;
+            }
+            .tab button:last-child { border-bottom: none; }
+            .tab button.active { text-align: left; }
+            h1 { font-size: 1.25rem; }
+            h2 { font-size: 1.05rem; }
+        }
+    </style>
+
+    <style type="text/css">svg:not(:root).svg-inline--fa{overflow:visible}.svg-inline--fa{display:inline-block;font-size:inherit;height:1em;overflow:visible;vertical-align:-.125em}.svg-inline--fa.fa-lg{vertical-align:-.225em}.svg-inline--fa.fa-w-1{width:.0625em}.svg-inline--fa.fa-w-2{width:.125em}.svg-inline--fa.fa-w-3{width:.1875em}.svg-inline--fa.fa-w-4{width:.25em}.svg-inline--fa.fa-w-5{width:.3125em}.svg-inline--fa.fa-w-6{width:.375em}.svg-inline--fa.fa-w-7{width:.4375em}.svg-inline--fa.fa-w-8{width:.5em}.svg-inline--fa.fa-w-9{width:.5625em}.svg-inline--fa.fa-w-10{width:.625em}.svg-inline--fa.fa-w-11{width:.6875em}.svg-inline--fa.fa-w-12{width:.75em}.svg-inline--fa.fa-w-13{width:.8125em}.svg-inline--fa.fa-w-14{width:.875em}.svg-inline--fa.fa-w-15{width:.9375em}.svg-inline--fa.fa-w-16{width:1em}.svg-inline--fa.fa-w-17{width:1.0625em}.svg-inline--fa.fa-w-18{width:1.125em}.svg-inline--fa.fa-w-19{width:1.1875em}.svg-inline--fa.fa-w-20{width:1.25em}.svg-inline--fa.fa-pull-left{margin-right:.3em;width:auto}.svg-inline--fa.fa-pull-right{margin-left:.3em;width:auto}.svg-inline--fa.fa-border{height:1.5em}.svg-inline--fa.fa-li{width:2em}.svg-inline--fa.fa-fw{width:1.25em}.fa-layers svg.svg-inline--fa{bottom:0;left:0;margin:auto;position:absolute;right:0;top:0}.fa-layers{display:inline-block;height:1em;position:relative;text-align:center;vertical-align:-.125em;width:1em}.fa-layers svg.svg-inline--fa{-webkit-transform-origin:center center;transform-origin:center center}.fa-layers-counter,.fa-layers-text{display:inline-block;position:absolute;text-align:center}.fa-layers-text{left:50%;top:50%;-webkit-transform:translate(-50%,-50%);transform:translate(-50%,-50%);-webkit-transform-origin:center center;transform-origin:center center}.fa-layers-counter{background-color:#ff253a;border-radius:1em;-webkit-box-sizing:border-box;box-sizing:border-box;color:#fff;height:1.5em;line-height:1;max-width:5em;min-width:1.5em;overflow:hidden;padding:.25em;right:0;text-overflow:ellipsis;top:0;-webkit-transform:scale(.25);transform:scale(.25);-webkit-transform-origin:top right;transform-origin:top right}.fa-layers-bottom-right{bottom:0;right:0;top:auto;-webkit-transform:scale(.25);transform:scale(.25);-webkit-transform-origin:bottom right;transform-origin:bottom right}.fa-layers-bottom-left{bottom:0;left:0;right:auto;top:auto;-webkit-transform:scale(.25);transform:scale(.25);-webkit-transform-origin:bottom left;transform-origin:bottom left}.fa-layers-top-right{right:0;top:0;-webkit-transform:scale(.25);transform:scale(.25);-webkit-transform-origin:top right;transform-origin:top right}.fa-layers-top-left{left:0;right:auto;top:0;-webkit-transform:scale(.25);transform:scale(.25);-webkit-transform-origin:top left;transform-origin:top left}.fa-lg{font-size:1.3333333333em;line-height:.75em;vertical-align:-.0667em}.fa-xs{font-size:.75em}.fa-sm{font-size:.875em}.fa-1x{font-size:1em}.fa-2x{font-size:2em}.fa-3x{font-size:3em}.fa-4x{font-size:4em}.fa-5x{font-size:5em}.fa-6x{font-size:6em}.fa-7x{font-size:7em}.fa-8x{font-size:8em}.fa-9x{font-size:9em}.fa-10x{font-size:10em}.fa-fw{text-align:center;width:1.25em}.fa-ul{list-style-type:none;margin-left:2.5em;padding-left:0}.fa-ul>li{position:relative}.fa-li{left:-2em;position:absolute;text-align:center;width:2em;line-height:inherit}.fa-border{border:solid .08em #eee;border-radius:.1em;padding:.2em .25em .15em}.fa-pull-left{float:left}.fa-pull-right{float:right}.fa.fa-pull-left,.fab.fa-pull-left,.fal.fa-pull-left,.far.fa-pull-left,.fas.fa-pull-left{margin-right:.3em}.fa.fa-pull-right,.fab.fa-pull-right,.fal.fa-pull-right,.far.fa-pull-right,.fas.fa-pull-right{margin-left:.3em}.fa-spin{-webkit-animation:fa-spin 2s infinite linear;animation:fa-spin 2s infinite linear}.fa-pulse{-webkit-animation:fa-spin 1s infinite steps(8);animation:fa-spin 1s infinite steps(8)}@-webkit-keyframes fa-spin{0%{-webkit-transform:rotate(0);transform:rotate(0)}100%{-webkit-transform:rotate(360deg);transform:rotate(360deg)}}@keyframes fa-spin{0%{-webkit-transform:rotate(0);transform:rotate(0)}100%{-webkit-transform:rotate(360deg);transform:rotate(360deg)}}.fa-rotate-90{-webkit-transform:rotate(90deg);transform:rotate(90deg)}.fa-rotate-180{-webkit-transform:rotate(180deg);transform:rotate(180deg)}.fa-rotate-270{-webkit-transform:rotate(270deg);transform:rotate(270deg)}.fa-flip-horizontal{-webkit-transform:scale(-1,1);transform:scale(-1,1)}.fa-flip-vertical{-webkit-transform:scale(1,-1);transform:scale(1,-1)}.fa-flip-both,.fa-flip-horizontal.fa-flip-vertical{-webkit-transform:scale(-1,-1);transform:scale(-1,-1)}:root .fa-flip-both,:root .fa-flip-horizontal,:root .fa-flip-vertical,:root .fa-rotate-180,:root .fa-rotate-270,:root .fa-rotate-90{-webkit-filter:none;filter:none}.fa-stack{display:inline-block;height:2em;position:relative;width:2.5em}.fa-stack-1x,.fa-stack-2x{bottom:0;left:0;margin:auto;position:absolute;right:0;top:0}.svg-inline--fa.fa-stack-1x{height:1em;width:1.25em}.svg-inline--fa.fa-stack-2x{height:2em;width:2.5em}.fa-inverse{color:#fff}.sr-only{border:0;clip:rect(0,0,0,0);height:1px;margin:-1px;overflow:hidden;padding:0;position:absolute;width:1px}.sr-only-focusable:active,.sr-only-focusable:focus{clip:auto;height:auto;margin:0;overflow:visible;position:static;width:auto}.svg-inline--fa .fa-primary{fill:var(--fa-primary-color,currentColor);opacity:1;opacity:var(--fa-primary-opacity,1)}.svg-inline--fa .fa-secondary{fill:var(--fa-secondary-color,currentColor);opacity:.4;opacity:var(--fa-secondary-opacity,.4)}.svg-inline--fa.fa-swap-opacity .fa-primary{opacity:.4;opacity:var(--fa-secondary-opacity,.4)}.svg-inline--fa.fa-swap-opacity .fa-secondary{opacity:1;opacity:var(--fa-primary-opacity,1)}.svg-inline--fa mask .fa-primary,.svg-inline--fa mask .fa-secondary{fill:#000}.fad.fa-inverse{color:#fff}</style>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+</head>
+<style>
+    body {
+        background-image: url('assets/background_1.webp'); /* Replace with your image path */
+        background-color: #f0f0f0; /* Set a fallback background color */
+        background-size: 100% 100%; /* Stretch to fit both width and height */
+        background-repeat: no-repeat; /* Do not repeat */
+        background-position: top center; /* Position at the top center */
+    }
+</style>
+<body>
+    <header style="background-image: url('assets/background.png'); height: 200px; background-size: cover; background-position: center; margin: 0; display: flex; align-items: center; justify-content: center;">
+        <h1 style="color: white; text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);">Welcome to Hao Ding's Website! (Open to work)</h1>
+    </header>
+    <div style="display: flex; gap: 20px;">
+        <div style="flex: 0 0 20%;">
+            <div class="photo">
+                <img src="assets/personal/profile.JPG" alt="Hao Ding">
+            </div>
+            <h2>My contact information</h2>
+            <h3>Email: <a href="mailto:hding2455@gmail.com">hding2455@gmail.com</a></h3>
+            <h3><a href="https://www.linkedin.com/in/hao-ding-7280b9107/" target="_blank">LinkedIn</a> 
+                <a href="https://scholar.google.com/citations?user=NIP-G-cAAAAJ&hl=en&oi=sra" target="_blank">Google Scholar</a>
+                <a href="https://github.com/hding2455" target="_blank">GitHub</a>
+            </h3>
+            <p>I am a Ph.D. candidate in the Department of Computer Science at Johns Hopkins University. I received my bachelor's degree from Tsinghua University in 2018.</p>
+            <p>On research, I am passionate robotics researcher working to push the boundary of autonomy in surgical domain. </p>
+            <p>Outside of research, I have a big passion for soccer and I'm now playing for Johns Hopkins University Chinese Football Club. </p>
+        </div>
+        <div style="flex: 1;">
+            <div class="tab" role="tablist" aria-label="Main tabs">
+                <button class="tablinks" onclick="openTab(event, 'Research')" role="tab" aria-selected="true">Research</button>
+                <button class="tablinks" onclick="openTab(event, 'Experience')" role="tab">Life</button>
+                <button class="tablinks" onclick="openTab(event, 'About')" role="tab">About</button>
+            </div>
+
+            <div id="Research" class="tabcontent" role="tabpanel">
+                <h1>Selected Research</h1>
+                <p>I am passionate robotics researcher working to push the boundary of autonomy in surgical domain. My work focuses on computer vision (robot perception) and emobodied Intelligence for robotics automation. During my Ph.D. study, my target is to digital twin-based framework that relies on robust low-level processing of vision perceptions to ensure the robustness of high-level surgiacl analysis and automation. Feel free to explore my research, projects, and publications! The list of publications can be found on my <a href="https://scholar.google.com/citations?user=NIP-G-cAAAAJ&hl=en&oi=sra">google scholar</a></p>
+                <h2>Embodied Intelligence</h2>
+                <ul>
+                    <li>
+                        <h2>Towards Robust Automation of Surgical Systems via Digital Twin-based Scene Representations from Foundation Models (COLAS-MICCAI 2025)
+                            <span class="link-block">
+                                <a href="https://arxiv.org/abs/2409.13107" target="_blank" class="external-link button is-normal is-rounded is-dark">
+                                    <span class="icon">
+                                    <svg class="svg-inline--fa fa-file-pdf fa-w-12" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="file-pdf" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><path fill="currentColor" d="M181.9 256.1c-5-16-4.9-46.9-2-46.9 8.4 0 7.6 36.9 2 46.9zm-1.7 47.2c-7.7 20.2-17.3 43.3-28.4 62.7 18.3-7 39-17.2 62.9-21.9-12.7-9.6-24.9-23.4-34.5-40.8zM86.1 428.1c0 .8 13.2-5.4 34.9-40.2-6.7 6.3-29.1 24.5-34.9 40.2zM248 160h136v328c0 13.3-10.7 24-24 24H24c-13.3 0-24-10.7-24-24V24C0 10.7 10.7 0 24 0h200v136c0 13.2 10.8 24 24 24zm-8 171.8c-20-12.2-33.3-29-42.7-53.8 4.5-18.5 11.6-46.6 6.2-64.2-4.7-29.4-42.4-26.5-47.8-6.8-5 18.3-.4 44.1 8.1 77-11.6 27.6-28.7 64.6-40.8 85.8-.1 0-.1.1-.2.1-27.1 13.9-73.6 44.5-54.5 68 5.6 6.9 16 10 21.5 10 17.9 0 35.7-18 61.1-61.8 25.8-8.5 54.1-19.1 79-23.2 21.7 11.8 47.1 19.5 64 19.5 29.2 0 31.2-32 19.7-43.4-13.9-13.6-54.3-9.7-73.6-7.2zM377 105L279 7c-4.5-4.5-10.6-7-17-7h-6v128h128v-6.1c0-6.3-2.5-12.4-7-16.9zm-74.1 255.3c4.1-2.7-2.5-11.9-42.8-9 37.1 15.8 42.8 9 42.8 9z"></path></svg>
+                                    </span>
+                                    <span>Paper</span>
+                                </a>
+                            </span>
+                        </h2>
+                        <p>Large language model-based (LLM) agents are emerging as a powerful enabler of robust embodied intelligence due to their capability of planning complex action sequences. Sound planning ability is necessary for robust automation in many task domains, but especially in surgical automation. These agents rely on a highly detailed natural language representation of the scene. Thus, to leverage the emergent capabilities of LLM agents for surgical task planning, developing similarly powerful and robust perception algorithms is necessary to derive a detailed scene representation of the environment from visual input. Previous research has focused primarily on enabling LLM-based task planning while adopting simple yet severely limited perception solutions to meet the needs for bench-top experiments but lack the critical flexibility to scale to less constrained settings. In this work, we propose an alternate perception approach -- a digital twin-based machine perception approach that capitalizes on the convincing performance and out-of-the-box generalization of recent vision foundation models. Integrating our digital twin-based scene representation and LLM agent for planning with the dVRK platform, we develop an embodied intelligence system and evaluate its robustness in performing peg transfer and gauze retrieval tasks. Our approach shows strong task performance and generalizability to varied environment settings. Despite convincing performance, this work is merely a first step towards the integration of digital twin-based scene representations. Future studies are necessary for the realization of a comprehensive digital twin framework to improve the interpretability and generalizability of embodied intelligence in surgery.</p>
+                        <img src="assets/research/dt_agent.jpg" alt="DSC snapshot">
+                        <div class="video-container" >
+                            <div class="video-wrapper">
+                                <video controls preload="metadata" poster="assets/research/dt_agent_1_poster.png" aria-label="Digital twin agent demo">
+                                    <source src="assets/research/dt_agent_1.mp4" type="video/mp4">
+                                    <source src="assets/research/dt_agent_1.webm" type="video/webm">
+                                </video>
+                                <p style="font-size:0.9rem;margin:px 0 0;color:#555;">Demo video: digital twin-based agent performing peg transfer tasks.</p>
+                            </div>
+                            <div class="video-wrapper-2">
+                                <video controls preload="metadata" poster="assets/research/dt_agent_2_poster.png" aria-label="Another demo video">
+                                    <source src="assets/research/dt_agent_2.mp4" type="video/mp4">
+                                    <source src="assets/research/dt_agent_2.webm" type="video/webm">
+                                </video>
+                                <p style="font-size:0.9rem;margin:6px 0 0;color:#555;">Demo video: digital twin-based agent performing gauze retrival tasks.</p>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+                <h2>Computer Vision</h2>
+                <ul>
+                    <li>
+                        <h2>Towards Robust Algorithms for Surgical Phase Recognition via Digital Twin Representations (DT4H-MICCAI 2025)
+                            <span class="link-block">
+                                <a href="https://link.springer.com/chapter/10.1007/978-3-032-07694-6_12" target="_blank" class="external-link button is-normal is-rounded is-dark">
+                                    <span class="icon">
+                                    <svg class="svg-inline--fa fa-file-pdf fa-w-12" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="file-pdf" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><path fill="currentColor" d="M181.9 256.1c-5-16-4.9-46.9-2-46.9 8.4 0 7.6 36.9 2 46.9zm-1.7 47.2c-7.7 20.2-17.3 43.3-28.4 62.7 18.3-7 39-17.2 62.9-21.9-12.7-9.6-24.9-23.4-34.5-40.8zM86.1 428.1c0 .8 13.2-5.4 34.9-40.2-6.7 6.3-29.1 24.5-34.9 40.2zM248 160h136v328c0 13.3-10.7 24-24 24H24c-13.3 0-24-10.7-24-24V24C0 10.7 10.7 0 24 0h200v136c0 13.2 10.8 24 24 24zm-8 171.8c-20-12.2-33.3-29-42.7-53.8 4.5-18.5 11.6-46.6 6.2-64.2-4.7-29.4-42.4-26.5-47.8-6.8-5 18.3-.4 44.1 8.1 77-11.6 27.6-28.7 64.6-40.8 85.8-.1 0-.1.1-.2.1-27.1 13.9-73.6 44.5-54.5 68 5.6 6.9 16 10 21.5 10 17.9 0 35.7-18 61.1-61.8 25.8-8.5 54.1-19.1 79-23.2 21.7 11.8 47.1 19.5 64 19.5 29.2 0 31.2-32 19.7-43.4-13.9-13.6-54.3-9.7-73.6-7.2zM377 105L279 7c-4.5-4.5-10.6-7-17-7h-6v128h128v-6.1c0-6.3-2.5-12.4-7-16.9zm-74.1 255.3c4.1-2.7-2.5-11.9-42.8-9 37.1 15.8 42.8 9 42.8 9z"></path></svg>
+                                    </span>
+                                    <span>Paper</span>
+                                </a>
+                            </span>
+                        </h2>
+                        <p>Surgical phase recognition (SPR) is an integral component of surgical data science, enabling high-level surgical analysis. End-to-end trained neural networks that predict the surgical phase directly from videos have shown excellent performance on benchmarks. However, these models struggle with robustness due to non-causal associations in the training set. Our goal is to improve model robustness to variations in the surgical videos by leveraging the digital twin (DT) paradigm – an intermediary layer to separate high-level analysis (SPR) from low-level processing. As a proof of concept, we present a DT representation-based framework for SPR from videos. The framework employs vision foundation models with reliable low-level scene understanding to craft DT representation. We embed the DT representation in place of raw video inputs in the state-of-the-art SPR model. The framework is trained on the Cholec80 dataset and evaluated on out-of-distribution (OOD) and corrupted test samples. Contrary to the vulnerability of the baseline model, our framework demonstrates strong robustness on both OOD and corrupted samples, with a video-level accuracy of 80.3 on a highly corrupted Cholec80 test set, 67.9 on the challenging CRCD dataset, and 99.8 on an internal robotic surgery dataset, outperforming the baseline by 3.9, 16.8, and 90.9 respectively. We also find that using DT representation as an augmentation to the raw input can significantly improve model robustness. Our findings lend support to the thesis that DT representations are effective in enhancing model robustness. Future work will seek to improve the feature informativeness and incorporate interpretability for a more comprehensive framework.</p>
+                        <img src="assets/research/dt_spr.jpg" alt="DSC snapshot">
+                    </li>
+                    <li>
+                        <h2>SegSTRONG-C: Segmenting Surgical Tools Robustly On Non-adversarial Generated Corruptions -- An EndoVis'24 Challenge (Challenge hosted on MICCAI2024, paper in submission to TMI)
+                            <a href="https://segstrongc.cs.jhu.edu/">Website</a>
+                            <span class="link-block">
+                                <a href="https://arxiv.org/abs/2407.11906" target="_blank" class="external-link button is-normal is-rounded is-dark">
+                                    <span class="icon">
+                                    <svg class="svg-inline--fa fa-file-pdf fa-w-12" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="file-pdf" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><path fill="currentColor" d="M181.9 256.1c-5-16-4.9-46.9-2-46.9 8.4 0 7.6 36.9 2 46.9zm-1.7 47.2c-7.7 20.2-17.3 43.3-28.4 62.7 18.3-7 39-17.2 62.9-21.9-12.7-9.6-24.9-23.4-34.5-40.8zM86.1 428.1c0 .8 13.2-5.4 34.9-40.2-6.7 6.3-29.1 24.5-34.9 40.2zM248 160h136v328c0 13.3-10.7 24-24 24H24c-13.3 0-24-10.7-24-24V24C0 10.7 10.7 0 24 0h200v136c0 13.2 10.8 24 24 24zm-8 171.8c-20-12.2-33.3-29-42.7-53.8 4.5-18.5 11.6-46.6 6.2-64.2-4.7-29.4-42.4-26.5-47.8-6.8-5 18.3-.4 44.1 8.1 77-11.6 27.6-28.7 64.6-40.8 85.8-.1 0-.1.1-.2.1-27.1 13.9-73.6 44.5-54.5 68 5.6 6.9 16 10 21.5 10 17.9 0 35.7-18 61.1-61.8 25.8-8.5 54.1-19.1 79-23.2 21.7 11.8 47.1 19.5 64 19.5 29.2 0 31.2-32 19.7-43.4-13.9-13.6-54.3-9.7-73.6-7.2zM377 105L279 7c-4.5-4.5-10.6-7-17-7h-6v128h128v-6.1c0-6.3-2.5-12.4-7-16.9zm-74.1 255.3c4.1-2.7-2.5-11.9-42.8-9 37.1 15.8 42.8 9 42.8 9z"></path></svg>
+                                    </span>
+                                    <span>Paper</span>
+                                </a>
+                            </span>
+                        </h2>
+                        <p>Vision-based segmentation of the robotic tool during robot-assisted surgery enables downstream applications, such as augmented reality feedback, while allowing for inaccuracies in robot kinematics. With the introduction of deep learning, many methods were presented to solve instrument segmentation directly and solely from images. While these approaches made remarkable progress on benchmark datasets, fundamental challenges pertaining to their robustness remain. We present CaRTS, a causality-driven robot tool segmentation algorithm, that is designed based on a complementary causal model of the robot tool segmentation task. Rather than directly inferring segmentation masks from observed images, CaRTS iteratively aligns tool models with image observations by updating the initially incorrect robot kinematic parameters through forward kinematics and differentiable rendering to optimize image feature similarity end-to-end. We benchmark CaRTS with competing techniques on both synthetic as well as real data from the dVRK, generated in precisely controlled scenarios to allow for counterfactual synthesis. On training-domain test data, CaRTS achieves a Dice score of 93.4 that is preserved well (Dice score of 91.8) when tested on counterfactually altered test data, exhibiting low brightness, smoke, blood, and altered background patterns. This compares favorably to Dice scores of 95.0 and 86.7, respectively, of the SOTA image-based method. Future work will involve accelerating CaRTS to achieve video framerate and estimating the impact occlusion has in practice. Despite these limitations, our results are promising: In addition to achieving high segmentation accuracy, CaRTS provides estimates of the true robot kinematics, which may benefit applications such as force estimation.</p>
+                        <img src="assets/research/segstrongc.jpg" alt="DSC snapshot">
+                        <!-- <div class="video-container" >
+                            <video controls preload="metadata" poster="assets/research/segstrongc_demo_poster.png" aria-label="Segstrongc Demo">
+                                <source src="assets/research/segstrongc_demo_trim.mp4" type="video/mov">
+                            </video>
+                            <p style="font-size:0.9rem;margin:px 0 0;color:#555;">Demo video: digital twin-based agent performing peg transfer tasks.</p>
+                        </div> -->
+                    </li>
+                    <li>
+                        <h2>CaRTS: Causality-driven Robot Tool Segmentation from Vision and Kinematics Data (MICCAI2022) 
+                            <span class="link-block">
+                                <a href="https://conferences.miccai.org/2022/papers/083-Paper0783.html" target="_blank" class="external-link button is-normal is-rounded is-dark">
+                                    <span class="icon">
+                                    <svg class="svg-inline--fa fa-file-pdf fa-w-12" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="file-pdf" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><path fill="currentColor" d="M181.9 256.1c-5-16-4.9-46.9-2-46.9 8.4 0 7.6 36.9 2 46.9zm-1.7 47.2c-7.7 20.2-17.3 43.3-28.4 62.7 18.3-7 39-17.2 62.9-21.9-12.7-9.6-24.9-23.4-34.5-40.8zM86.1 428.1c0 .8 13.2-5.4 34.9-40.2-6.7 6.3-29.1 24.5-34.9 40.2zM248 160h136v328c0 13.3-10.7 24-24 24H24c-13.3 0-24-10.7-24-24V24C0 10.7 10.7 0 24 0h200v136c0 13.2 10.8 24 24 24zm-8 171.8c-20-12.2-33.3-29-42.7-53.8 4.5-18.5 11.6-46.6 6.2-64.2-4.7-29.4-42.4-26.5-47.8-6.8-5 18.3-.4 44.1 8.1 77-11.6 27.6-28.7 64.6-40.8 85.8-.1 0-.1.1-.2.1-27.1 13.9-73.6 44.5-54.5 68 5.6 6.9 16 10 21.5 10 17.9 0 35.7-18 61.1-61.8 25.8-8.5 54.1-19.1 79-23.2 21.7 11.8 47.1 19.5 64 19.5 29.2 0 31.2-32 19.7-43.4-13.9-13.6-54.3-9.7-73.6-7.2zM377 105L279 7c-4.5-4.5-10.6-7-17-7h-6v128h128v-6.1c0-6.3-2.5-12.4-7-16.9zm-74.1 255.3c4.1-2.7-2.5-11.9-42.8-9 37.1 15.8 42.8 9 42.8 9z"></path></svg>
+                                    </span>
+                                    <span>Paper</span>
+                                </a>
+                            </span></br>
+                            Rethinking causality-driven robot tool segmentation with temporal constraints (IPCAI2023) 
+                            <span class="link-block">
+                                <a href="https://link.springer.com/article/10.1007/s11548-023-02872-8" target="_blank" class="external-link button is-normal is-rounded is-dark">
+                                    <span class="icon">
+                                    <svg class="svg-inline--fa fa-file-pdf fa-w-12" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="file-pdf" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><path fill="currentColor" d="M181.9 256.1c-5-16-4.9-46.9-2-46.9 8.4 0 7.6 36.9 2 46.9zm-1.7 47.2c-7.7 20.2-17.3 43.3-28.4 62.7 18.3-7 39-17.2 62.9-21.9-12.7-9.6-24.9-23.4-34.5-40.8zM86.1 428.1c0 .8 13.2-5.4 34.9-40.2-6.7 6.3-29.1 24.5-34.9 40.2zM248 160h136v328c0 13.3-10.7 24-24 24H24c-13.3 0-24-10.7-24-24V24C0 10.7 10.7 0 24 0h200v136c0 13.2 10.8 24 24 24zm-8 171.8c-20-12.2-33.3-29-42.7-53.8 4.5-18.5 11.6-46.6 6.2-64.2-4.7-29.4-42.4-26.5-47.8-6.8-5 18.3-.4 44.1 8.1 77-11.6 27.6-28.7 64.6-40.8 85.8-.1 0-.1.1-.2.1-27.1 13.9-73.6 44.5-54.5 68 5.6 6.9 16 10 21.5 10 17.9 0 35.7-18 61.1-61.8 25.8-8.5 54.1-19.1 79-23.2 21.7 11.8 47.1 19.5 64 19.5 29.2 0 31.2-32 19.7-43.4-13.9-13.6-54.3-9.7-73.6-7.2zM377 105L279 7c-4.5-4.5-10.6-7-17-7h-6v128h128v-6.1c0-6.3-2.5-12.4-7-16.9zm-74.1 255.3c4.1-2.7-2.5-11.9-42.8-9 37.1 15.8 42.8 9 42.8 9z"></path></svg>
+                                    </span>
+                                    <span>Paper</span>
+                                </a>
+                            </span>
+                            <span class="link-block">
+                                <a href="https://github.com/hding2455/CaRTS" target="_blank" class="external-link button is-normal is-rounded is-dark">
+                                    <span class="icon">
+                                    <svg class="svg-inline--fa fa-github fa-w-16" aria-hidden="true" focusable="false" data-prefix="fab" data-icon="github" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><path fill="currentColor" d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"></path></svg>
+                                    </span>
+                                    <span>Code</span>
+                                </a>
+                            </span>
+                        </h2>
+                        <p>Vision-based segmentation of the robotic tool during robot-assisted surgery enables downstream applications, such as augmented reality feedback, while allowing for inaccuracies in robot kinematics. With the introduction of deep learning, many methods were presented to solve instrument segmentation directly and solely from images. While these approaches made remarkable progress on benchmark datasets, fundamental challenges pertaining to their robustness remain. We present CaRTS, a causality-driven robot tool segmentation algorithm, that is designed based on a complementary causal model of the robot tool segmentation task. Rather than directly inferring segmentation masks from observed images, CaRTS iteratively aligns tool models with image observations by updating the initially incorrect robot kinematic parameters through forward kinematics and differentiable rendering to optimize image feature similarity end-to-end. We benchmark CaRTS with competing techniques on both synthetic as well as real data from the dVRK, generated in precisely controlled scenarios to allow for counterfactual synthesis. On training-domain test data, CaRTS achieves a Dice score of 93.4 that is preserved well (Dice score of 91.8) when tested on counterfactually altered test data, exhibiting low brightness, smoke, blood, and altered background patterns. This compares favorably to Dice scores of 95.0 and 86.7, respectively, of the SOTA image-based method. Future work will involve accelerating CaRTS to achieve video framerate and estimating the impact occlusion has in practice. Despite these limitations, our results are promising: In addition to achieving high segmentation accuracy, CaRTS provides estimates of the true robot kinematics, which may benefit applications such as force estimation.</p>
+                        <img src="assets/research/carts.jpg" alt="DSC snapshot">
+                    </li>
+                    
+                    <li>
+                        <h2>Influence Selection for Active Learning (ICCV2021)
+                            <span class="link-block">
+                                <a href="https://openaccess.thecvf.com/content/ICCV2021/papers/Liu_Influence_Selection_for_Active_Learning_ICCV_2021_paper.pdf" target="_blank" class="external-link button is-normal is-rounded is-dark">
+                                    <span class="icon">
+                                    <svg class="svg-inline--fa fa-file-pdf fa-w-12" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="file-pdf" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><path fill="currentColor" d="M181.9 256.1c-5-16-4.9-46.9-2-46.9 8.4 0 7.6 36.9 2 46.9zm-1.7 47.2c-7.7 20.2-17.3 43.3-28.4 62.7 18.3-7 39-17.2 62.9-21.9-12.7-9.6-24.9-23.4-34.5-40.8zM86.1 428.1c0 .8 13.2-5.4 34.9-40.2-6.7 6.3-29.1 24.5-34.9 40.2zM248 160h136v328c0 13.3-10.7 24-24 24H24c-13.3 0-24-10.7-24-24V24C0 10.7 10.7 0 24 0h200v136c0 13.2 10.8 24 24 24zm-8 171.8c-20-12.2-33.3-29-42.7-53.8 4.5-18.5 11.6-46.6 6.2-64.2-4.7-29.4-42.4-26.5-47.8-6.8-5 18.3-.4 44.1 8.1 77-11.6 27.6-28.7 64.6-40.8 85.8-.1 0-.1.1-.2.1-27.1 13.9-73.6 44.5-54.5 68 5.6 6.9 16 10 21.5 10 17.9 0 35.7-18 61.1-61.8 25.8-8.5 54.1-19.1 79-23.2 21.7 11.8 47.1 19.5 64 19.5 29.2 0 31.2-32 19.7-43.4-13.9-13.6-54.3-9.7-73.6-7.2zM377 105L279 7c-4.5-4.5-10.6-7-17-7h-6v128h128v-6.1c0-6.3-2.5-12.4-7-16.9zm-74.1 255.3c4.1-2.7-2.5-11.9-42.8-9 37.1 15.8 42.8 9 42.8 9z"></path></svg>
+                                    </span>
+                                    <span>Paper</span>
+                                </a>
+                            </span>
+                        </h2>
+                        <p>The existing active learning methods select the samples by evaluating the sample's uncertainty or its effect on the diversity of labeled datasets based on different task-specific or model-specific criteria. In this paper, we propose the Influence Selection for Active Learning(ISAL) which selects the unlabeled samples that can provide the most positive Influence on model performance. To obtain the Influence of the unlabeled sample in the active learning scenario, we design the Untrained Unlabeled sample Influence Calculation(UUIC) to estimate the unlabeled sample's expected gradient with which we calculate its Influence. To prove the effectiveness of UUIC, we provide both theoretical and experimental analyses. Since the UUIC just depends on the model gradients, which can be obtained easily from any neural network, our active learning algorithm is task-agnostic and model-agnostic. ISAL achieves state-of-the-art performance in different active learning settings for different tasks with different datasets. Compared with previous methods, our method decreases the annotation cost at least by 12%, 13% and 16% on CIFAR10, VOC2012 and COCO, respectively.</p>
+                        <img src="assets/research/isal.jpg" alt="DSC snapshot">
+                    </li>
+                    <li>
+                        <h2>Deeply shape-guided cascade for instance segmentation (CVPR2021)
+                            <span class="link-block">
+                                <a href="https://openaccess.thecvf.com/content/CVPR2021/html/Ding_Deeply_Shape-Guided_Cascade_for_Instance_Segmentation_CVPR_2021_paper.html" target="_blank" class="external-link button is-normal is-rounded is-dark">
+                                    <span class="icon">
+                                    <svg class="svg-inline--fa fa-file-pdf fa-w-12" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="file-pdf" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><path fill="currentColor" d="M181.9 256.1c-5-16-4.9-46.9-2-46.9 8.4 0 7.6 36.9 2 46.9zm-1.7 47.2c-7.7 20.2-17.3 43.3-28.4 62.7 18.3-7 39-17.2 62.9-21.9-12.7-9.6-24.9-23.4-34.5-40.8zM86.1 428.1c0 .8 13.2-5.4 34.9-40.2-6.7 6.3-29.1 24.5-34.9 40.2zM248 160h136v328c0 13.3-10.7 24-24 24H24c-13.3 0-24-10.7-24-24V24C0 10.7 10.7 0 24 0h200v136c0 13.2 10.8 24 24 24zm-8 171.8c-20-12.2-33.3-29-42.7-53.8 4.5-18.5 11.6-46.6 6.2-64.2-4.7-29.4-42.4-26.5-47.8-6.8-5 18.3-.4 44.1 8.1 77-11.6 27.6-28.7 64.6-40.8 85.8-.1 0-.1.1-.2.1-27.1 13.9-73.6 44.5-54.5 68 5.6 6.9 16 10 21.5 10 17.9 0 35.7-18 61.1-61.8 25.8-8.5 54.1-19.1 79-23.2 21.7 11.8 47.1 19.5 64 19.5 29.2 0 31.2-32 19.7-43.4-13.9-13.6-54.3-9.7-73.6-7.2zM377 105L279 7c-4.5-4.5-10.6-7-17-7h-6v128h128v-6.1c0-6.3-2.5-12.4-7-16.9zm-74.1 255.3c4.1-2.7-2.5-11.9-42.8-9 37.1 15.8 42.8 9 42.8 9z"></path></svg>
+                                    </span>
+                                    <span>Paper</span>
+                                </a>
+                            </span>
+
+                            <span class="link-block">
+                                <a href="https://github.com/hding2455/DSC" target="_blank" class="external-link button is-normal is-rounded is-dark">
+                                    <span class="icon">
+                                    <svg class="svg-inline--fa fa-github fa-w-16" aria-hidden="true" focusable="false" data-prefix="fab" data-icon="github" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><path fill="currentColor" d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"></path></svg>
+                                    </span>
+                                    <span>Code</span>
+                                </a>
+                            </span>
+                        </h2>
+                        <p>The key to a successful cascade architecture for precise instance segmentation is to fully leverage the relationship between bounding box detection and mask segmentation across multiple stages. Although modern instance segmentation cascades achieve leading performance, they mainly make use of a unidirectional relationship, i.e., mask segmentation can benefit from iteratively refined bounding box detection. In this paper, we investigate an alternative direction, i.e., how to take the advantage of precise mask segmentation for bounding box detection in a cascade architecture. We propose a Deeply Shape-guided Cascade (DSC) for instance segmentation, which iteratively imposes the shape guidances extracted from mask prediction at the previous stage on bounding box detection at current stage. It forms a bi-directional relationship between the two tasks by introducing three key components: (1) Initial shape guidance: A mask-supervised Region Proposal Network (mPRN) with the ability to generate class-agnostic masks; (2) Explicit shape guidance: A mask-guided region-of-interest (RoI) feature extractor, which employs mask segmentation at previous stage to focus feature extraction at current stage within a region aligned well with the shape of the instance-of-interest rather than a rectangular RoI; (3) Implicit shape guidance: A feature fusion operation which feeds intermediate mask features at previous stage to the bounding box head at current stage. Experimental results show that DSC outperforms the state-of-the-art instance segmentation cascade, Hybrid Task Cascade (HTC), by a large margin and achieves 51.8 box AP and 45.5 mask AP on COCO test-dev.</p>
+                        <img src="assets/research/dsc.jpg" alt="DSC snapshot">
+                    </li>
+                </ul>
+            </div>
+
+            <div id="Experience" class="tabcontent" role="tabpanel">
+                <div style="display: flex; align-items: center;">
+                    <h2 style="margin-right: 10px;">Soccer</h2>
+                    <img src="assets/personal/jhu_cfc.png" alt="" aria-hidden="true" style="max-width: 3%; border: none;">
+                    <img src="assets/personal/Tsinghua.png" alt="" aria-hidden="true" style="max-width: 3%; border: none;">
+                    <img src="assets/personal/FC_Bayern_München.svg" alt="" aria-hidden="true" style="max-width: 3%; border: none;">
+                </div>
+                <p>I have been playing soccer since I was a kid. I played for Tsinghua University soccer team during my undergraduate study from 2014 to 2016. After I came to Johns Hopkins University for graduate study, I joined the Johns Hopkins University Chinese Football Club (JHU CFC) and have been playing for the team since 2018.</p>
+                <p>I took the responsibility as the team captain from 2021 to 2024. During my service. I led the team's transformation from a pick up soccer group to a more systematic soccer club with official administration, regular training, and league participation. I also led the team to win sevral championships in several soccer tournaments like 2022 Alumni Cup and 2023 Ivy Cup</p>
+                <p>Please refer to <a href="https://www.jhucfc.org">www.jhucfc.org</a> and my personal <a href="https://www.jhucfc.org/personal/HaoDing"> page</a> for the information of the team I am playing for and myself as a player in the team</p>
+                <p>Besides playing, I am a fan of Bayern Munich</p>
+                <style>
+                .three-row { display:flex; gap:10px; align-items:stretch; }
+                .three-row img { flex: 0 0 30%; max-width:30%; width:30%; height:auto; border-radius:8px; box-shadow:0 0 6px rgba(0,0,0,0.08); display:block; object-fit:cover; }
+                @media (max-width:600px){
+                    .three-row { flex-direction:column; }
+                    .three-row img { width:100%; max-width:100%; flex: 0 0 auto; }
+                }
+                </style>
+
+                <div class="three-row" aria-label="Three horizontal images">
+                    <img src="assets/personal/ivy_champion.PNG" alt="Photo 2">
+                    <img src="assets/personal/ivy_best_defender.jpg" alt="Photo 1">
+                    <img src="assets/personal/helong cup.JPG" alt="Photo 3">
+                </div>
+            </div>
+
+            <div id="About" class="tabcontent" role="tabpanel">
+                <h3>I am going to graduate early in 2026 and I'm actively looking for jobs in embodied intelligence and computer vision.</h3>
+                <h3>Education</h3>
+                <ul>
+                    <li>Doctor of Philosophy, Computer Science, Johns Hopkins University University 2020 - 2026 (expected)</li>
+                    <li>Master of Science and Engineering, Robotics, Johns Hopkins University University 2018 - 2020</li>
+                    <li>Bachelor of Engineering, Computer Science and Technology, Tsinghua University 2014 - 2018</li>
+                </ul>
+                <h3>Work Experience</h3>
+                <ul>
+                    <li>Research Intern - United Imaging Intelligence, June 2023 - Aug 2023</li>
+                    <li>Research Intern - Sensetime, Dec 2019 - March 2021</li>
+                </ul>
+            </div>
+        </div>
+
+    
+
+    <script>
+        function openTab(evt, tabName) {
+            var i, tabcontent, tablinks;
+            tabcontent = document.getElementsByClassName("tabcontent");
+            for (i = 0; i < tabcontent.length; i++) {
+                tabcontent[i].style.display = "none";
+            }
+            tablinks = document.getElementsByClassName("tablinks");
+            for (i = 0; i < tablinks.length; i++) {
+                tablinks[i].className = tablinks[i].className.replace(" active", "");
+                tablinks[i].setAttribute("aria-selected", "false");
+            }
+            var panel = document.getElementById(tabName);
+            if (panel) {
+                panel.style.display = "block";
+            }
+            evt.currentTarget.className += " active";
+            evt.currentTarget.setAttribute("aria-selected", "true");
+        }
+        // Open Research tab by default (guard)
+        var defaultTab = document.getElementsByClassName("tablinks")[0];
+        if (defaultTab) defaultTab.click();
+    </script>
+</body>
+</html></span>
